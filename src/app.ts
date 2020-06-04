@@ -3,6 +3,8 @@ import helmet from 'helmet'
 import cors from 'cors'
 import { connect } from 'mongoose'
 import routes from './app/routes'
+import { config } from 'dotenv'
+config()
 
 class App {
   public readonly express: express.Application
@@ -22,7 +24,7 @@ class App {
 
   async database (): Promise<void> {
     try {
-      await connect('mongodb://localhost:27017/sporgenda', {
+      await connect(process.env.MONGO_URL, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true
