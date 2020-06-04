@@ -24,7 +24,7 @@ class App {
 
   async database (): Promise<void> {
     try {
-      await connect(process.env.MONGO_URL ?? 'mongodb://localhost:27017/sporgenda', {
+      await connect(process.env.MONGO_URL, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true
@@ -32,6 +32,7 @@ class App {
 
       console.log('MongoDb connect')
     } catch (error) {
+      console.log('error ao conectar com mongodb')
       console.error(error.message)
       process.exit(1)
     }
