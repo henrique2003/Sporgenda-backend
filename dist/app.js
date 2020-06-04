@@ -23,9 +23,8 @@ class App {
         this.express.use('/api', routes_1.default);
     }
     async database() {
-        var _a;
         try {
-            await mongoose_1.connect((_a = process.env.MONGO_URL) !== null && _a !== void 0 ? _a : 'mongodb://localhost:27017/sporgenda', {
+            await mongoose_1.connect(process.env.MONGO_URL, {
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
                 useCreateIndex: true
@@ -33,6 +32,7 @@ class App {
             console.log('MongoDb connect');
         }
         catch (error) {
+            console.log('error ao conectar com mongodb');
             console.error(error.message);
             process.exit(1);
         }
