@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { Schedule } from '../models'
+import Schedule from '../models/Schedule'
 
 class ScheduleController {
   public async index (req: Request, res: Response): Promise<Response> {
@@ -14,16 +14,16 @@ class ScheduleController {
 
   public async store (req: Request, res: Response): Promise<Response> {
     try {
-      const { day, month, time, limit } = req.body
+      const { day, month, time, limit, location } = req.body
 
-      const fields = ['day', 'month', 'time', 'limit']
+      const fields = ['day', 'month', 'time', 'limit', 'location']
       for (const field of fields) {
         if (typeof req.body[field] === 'string') {
           req.body[field] = req.body[field].trim()
         }
       }
 
-      if (!day || !time || !limit || !month) {
+      if (!day || !time || !limit || !month || !location) {
         return res.status(400).json('Campo em branco')
       }
 

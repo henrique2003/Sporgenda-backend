@@ -24,7 +24,7 @@ class App {
 
   async database (): Promise<void> {
     try {
-      await connect(process.env.MONGO_URL, {
+      await connect(process.env.MONGO_URL ?? 'mongodb://localhost:27017/sporgenda', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true

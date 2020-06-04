@@ -4,6 +4,7 @@ interface ISchedule extends Document {
   month: string
   day: string
   time: string
+  location: string
   limit: number
   completed: Boolean
   users?: User[]
@@ -15,6 +16,11 @@ export interface User {
 }
 
 const UserSchema = new Schema({
+  location: {
+    type: String,
+    required: true,
+    trim: true
+  },
   month: {
     type: String,
     required: true,
