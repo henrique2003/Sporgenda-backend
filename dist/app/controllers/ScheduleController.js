@@ -40,19 +40,11 @@ class ScheduleController {
     async registerPeople(req, res) {
         try {
             const { body, params } = req;
-            const { name, wordKey } = body;
             const { id } = params;
-            if (!name && !wordKey) {
+            if (!body.name) {
                 return res.status(400).json('Campo em branco');
             }
             const lastSchedule = await Schedule_1.default.findById(id);
-            const { users, limit } = lastSchedule;
-            if (!(users.length <= limit)) {
-                return res.status(400).json('Sem vagas neste período');
-            }
-            if (users.length + 1 >= limit) {
-                lastSchedule.completed = true;
-            }
             lastSchedule.users.push(body);
             const schedule = await Schedule_1.default.findByIdAndUpdate({
                 _id: id

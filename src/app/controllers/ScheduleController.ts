@@ -40,6 +40,25 @@ class ScheduleController {
     }
   }
 
+  public async show (req: Request, res: Response): Promise<Response> {
+    try {
+      const { id } = req.params
+      if (!id) {
+        return res.status(400).json('Necessário Id')
+      }
+
+      const schedule = await Schedule.findById(id)
+
+      if (!schedule) {
+        return res.status(400).json('Não encontrado')
+      }
+
+      return res.status(200).json(schedule)
+    } catch (error) {
+      return res.status(500).json('Server Error')
+    }
+  }
+
   public async registerPeople (req: Request, res: Response): Promise<Response> {
     try {
       const { body, params } = req

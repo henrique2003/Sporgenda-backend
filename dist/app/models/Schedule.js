@@ -29,16 +29,7 @@ const UserSchema = new mongoose_1.Schema({
         type: Boolean,
         default: false
     },
-    users: [{
-            name: {
-                type: String,
-                trim: true
-            },
-            wordKey: {
-                type: String,
-                trim: true
-            }
-        }]
+    users: [String]
 }, {
     timestamps: true
 });
