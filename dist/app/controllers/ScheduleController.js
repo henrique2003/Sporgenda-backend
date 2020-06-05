@@ -61,7 +61,7 @@ class ScheduleController {
                 return res.status(400).json('Campo em branco');
             }
             const lastSchedule = await Schedule_1.default.findById(id);
-            lastSchedule.users.push(body);
+            lastSchedule.users.push(body.name);
             const schedule = await Schedule_1.default.findByIdAndUpdate({
                 _id: id
             }, {
