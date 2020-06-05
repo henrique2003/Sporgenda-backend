@@ -7,12 +7,7 @@ interface ISchedule extends Document {
   location: string
   limit: number
   completed: Boolean
-  users?: User[]
-}
-
-export interface User {
-  name: string
-  wordKey: string
+  users?: string[]
 }
 
 const UserSchema = new Schema({
@@ -43,16 +38,7 @@ const UserSchema = new Schema({
     type: Boolean,
     default: false
   },
-  users: [{
-    name: {
-      type: String,
-      trim: true
-    },
-    wordKey: {
-      type: String,
-      trim: true
-    }
-  }]
+  users: [String]
 }, {
   timestamps: true
 })
