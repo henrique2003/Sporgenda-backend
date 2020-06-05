@@ -37,6 +37,22 @@ class ScheduleController {
             return res.status(500).json('Server Error');
         }
     }
+    async show(req, res) {
+        try {
+            const { id } = req.params;
+            if (!id) {
+                return res.status(400).json('Necessário Id');
+            }
+            const schedule = await Schedule_1.default.findById(id);
+            if (!schedule) {
+                return res.status(400).json('Não encontrado');
+            }
+            return res.status(200).json(schedule);
+        }
+        catch (error) {
+            return res.status(500).json('Server Error');
+        }
+    }
     async registerPeople(req, res) {
         try {
             const { body, params } = req;
