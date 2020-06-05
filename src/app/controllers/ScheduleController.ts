@@ -14,16 +14,16 @@ class ScheduleController {
 
   public async store (req: Request, res: Response): Promise<Response> {
     try {
-      const { day, month, time, location } = req.body
+      const { day, month, time, location, title } = req.body
 
-      const fields = ['day', 'month', 'time', 'limit', 'location']
+      const fields = ['day', 'month', 'time', 'location', 'title']
       for (const field of fields) {
         if (typeof req.body[field] === 'string') {
           req.body[field] = req.body[field].trim()
         }
       }
 
-      if (!day || !time || !month || !location) {
+      if (!day || !time || !month || !location || !title) {
         return res.status(400).json('Campo em branco')
       }
 

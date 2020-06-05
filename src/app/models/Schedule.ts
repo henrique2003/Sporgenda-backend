@@ -1,6 +1,7 @@
 import { Schema, model, Document } from 'mongoose'
 
 interface ISchedule extends Document {
+  title: string
   month: string
   day: string
   time: string
@@ -9,6 +10,11 @@ interface ISchedule extends Document {
 }
 
 const UserSchema = new Schema({
+  title: {
+    type: String,
+    required: true,
+    trim: true
+  },
   location: {
     type: String,
     required: true,
