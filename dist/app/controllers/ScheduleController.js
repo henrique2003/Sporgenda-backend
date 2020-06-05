@@ -16,14 +16,14 @@ class ScheduleController {
     }
     async store(req, res) {
         try {
-            const { day, month, time, limit, location } = req.body;
-            const fields = ['day', 'month', 'time', 'limit', 'location'];
+            const { day, month, time, location, title } = req.body;
+            const fields = ['day', 'month', 'time', 'location', 'title'];
             for (const field of fields) {
                 if (typeof req.body[field] === 'string') {
                     req.body[field] = req.body[field].trim();
                 }
             }
-            if (!day || !time || !limit || !month || !location) {
+            if (!day || !time || !month || !location || !title) {
                 return res.status(400).json('Campo em branco');
             }
             if (parseInt(day) < 1 || parseInt(day) > 31) {
@@ -73,6 +73,19 @@ class ScheduleController {
         }
         catch (error) {
             console.log(error.message);
+            return res.status(500).json('Server Error');
+        }
+    }
+    async destroy(req, res) {
+        try {
+            const { id } = req.params;
+            if (!id) {
+                return res.status(400).json('Necessário Id');
+            }
+            await Schedule_1.default.findByIdAndDelete(id);
+            return res.status(204).json();
+        }
+        catch (error) {
             return res.status(500).json('Server Error');
         }
     }
