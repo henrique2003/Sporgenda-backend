@@ -9,7 +9,7 @@ interface ISchedule extends Document {
   users?: string[]
 }
 
-const UserSchema = new Schema({
+const ScheduleSchema = new Schema({
   title: {
     type: String,
     required: true,
@@ -39,4 +39,4 @@ const UserSchema = new Schema({
   timestamps: true
 })
 
-export default model<ISchedule>('Schedule', UserSchema)
+export default model<ISchedule>('Schedule', ScheduleSchema)
