@@ -5,8 +5,6 @@ interface ISchedule extends Document {
   day: string
   time: string
   location: string
-  limit: number
-  completed: Boolean
   users?: string[]
 }
 
@@ -29,14 +27,6 @@ const UserSchema = new Schema({
     type: String,
     required: true,
     trim: true
-  },
-  limit: {
-    type: Number,
-    required: true
-  },
-  completed: {
-    type: Boolean,
-    default: false
   },
   users: [String]
 }, {

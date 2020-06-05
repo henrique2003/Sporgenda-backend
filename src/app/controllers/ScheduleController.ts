@@ -14,7 +14,7 @@ class ScheduleController {
 
   public async store (req: Request, res: Response): Promise<Response> {
     try {
-      const { day, month, time, limit, location } = req.body
+      const { day, month, time, location } = req.body
 
       const fields = ['day', 'month', 'time', 'limit', 'location']
       for (const field of fields) {
@@ -23,7 +23,7 @@ class ScheduleController {
         }
       }
 
-      if (!day || !time || !limit || !month || !location) {
+      if (!day || !time || !month || !location) {
         return res.status(400).json('Campo em branco')
       }
 
@@ -82,6 +82,21 @@ class ScheduleController {
       return res.status(200).json(schedule)
     } catch (error) {
       console.log(error.message)
+      return res.status(500).json('Server Error')
+    }
+  }
+
+  public async destroy (req: Request, res: Response): Promise<Response> {
+    try {
+      const { id } = req.params
+      if (!id) {
+        return res.status(400).json('Necessário Id')
+      }
+
+      await Schedule.findByIdAndDelete(id)
+
+      return res.status(204).json()
+    } catch (error) {
       return res.status(500).json('Server Error')
     }
   }
