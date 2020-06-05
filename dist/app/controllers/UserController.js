@@ -27,7 +27,7 @@ class UserController {
             if (await bcrypt_1.compare(user.password, password)) {
                 return res.status(400).json('Senha inválida');
             }
-            const token = jsonwebtoken_1.sign(user.id, 'sporgenda123', { expiresIn: 8460 });
+            const token = jsonwebtoken_1.sign({ id: user.id }, 'sporgenda123', { expiresIn: 86400 });
             return res.status(200).json({ user, token });
         }
         catch (error) {

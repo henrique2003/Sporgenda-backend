@@ -30,7 +30,7 @@ class UserController {
         return res.status(400).json('Senha inválida')
       }
 
-      const token = sign(user.id, 'sporgenda123', { expiresIn: 8460 })
+      const token = sign({ id: user.id }, 'sporgenda123', { expiresIn: 86400 })
 
       return res.status(200).json({ user, token })
     } catch (error) {
