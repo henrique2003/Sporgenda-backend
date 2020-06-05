@@ -69,7 +69,7 @@ class ScheduleController {
       }
 
       const lastSchedule = await Schedule.findById(id)
-      lastSchedule.users.push(body)
+      lastSchedule.users.push(body.name)
 
       const schedule = await Schedule.findByIdAndUpdate({
         _id: id
