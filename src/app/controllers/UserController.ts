@@ -26,7 +26,7 @@ class UserController {
         return res.status(400).json('Usuário não encontrado')
       }
 
-      if (await compare(user.password, password)) {
+      if (!await compare(password, user.password)) {
         return res.status(400).json('Senha inválida')
       }
 
