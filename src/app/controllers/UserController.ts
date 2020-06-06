@@ -38,6 +38,15 @@ class UserController {
       return res.status(500).json('Server Error')
     }
   }
+
+  public async auth (req: Request, res: Response): Promise<Response> {
+    try {
+      return res.status(204).json()
+    } catch (error) {
+      console.log(error.message)
+      return res.status(500).json('Server Error')
+    }
+  }
 }
 
 export default new UserController()
