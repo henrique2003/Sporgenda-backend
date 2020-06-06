@@ -24,7 +24,7 @@ class UserController {
             if (!user) {
                 return res.status(400).json('Usuário não encontrado');
             }
-            if (await bcrypt_1.compare(user.password, password)) {
+            if (!await bcrypt_1.compare(password, user.password)) {
                 return res.status(400).json('Senha inválida');
             }
             const token = jsonwebtoken_1.sign({ id: user.id }, 'sporgenda123', { expiresIn: 86400 });
