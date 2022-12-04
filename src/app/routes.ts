@@ -13,6 +13,7 @@ routes.get('/agenda/:id', show)
 routes.put('/agenda/:id', registerPeople)
 routes.delete('/agenda/:id', auth, destroy)
 
+
 routes.post('/user', post)
 routes.get('/user', get)
 routes.post('/login', login)
