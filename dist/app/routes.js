@@ -8,14 +8,15 @@ const ScheduleController_1 = __importDefault(require("./controllers/ScheduleCont
 const UserController_1 = __importDefault(require("./controllers/UserController"));
 const auth_1 = require("./middlewares/auth");
 const { index, store, registerPeople, show, destroy } = ScheduleController_1.default;
-const { post, login, auth: authController } = UserController_1.default;
-const routes = express_1.Router();
+const { post, login, auth: authController, get } = UserController_1.default;
+const routes = (0, express_1.Router)();
 routes.post('/agenda', auth_1.auth, store);
 routes.get('/agenda', index);
 routes.get('/agenda/:id', show);
 routes.put('/agenda/:id', registerPeople);
 routes.delete('/agenda/:id', auth_1.auth, destroy);
 routes.post('/user', post);
+routes.get('/user', get);
 routes.post('/login', login);
 routes.get('/auth', auth_1.auth, authController);
 exports.default = routes;

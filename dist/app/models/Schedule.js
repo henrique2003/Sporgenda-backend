@@ -30,4 +30,4 @@ const ScheduleSchema = new mongoose_1.Schema({
 }, {
     timestamps: true
 });
-exports.default = mongoose_1.model('Schedule', ScheduleSchema);
+exports.default = (0, mongoose_1.model)('Schedule', ScheduleSchema);

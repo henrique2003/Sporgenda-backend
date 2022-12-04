@@ -9,8 +9,17 @@ const User_1 = __importDefault(require("../models/User"));
 class UserController {
     async post(req, res) {
         try {
-            req.body.password = await bcrypt_1.hash(req.body.password, 10);
+            req.body.password = await (0, bcrypt_1.hash)(req.body.password, 10);
             const user = await User_1.default.create(req.body);
+            return res.status(200).json(user);
+        }
+        catch (error) {
+            return res.status(500).json('Server Error');
+        }
+    }
+    async get(req, res) {
+        try {
+            const user = await User_1.default.find();
             return res.status(200).json(user);
         }
         catch (error) {
@@ -24,10 +33,10 @@ class UserController {
             if (!user) {
                 return res.status(400).json('Usuário não encontrado');
             }
-            if (!await bcrypt_1.compare(password, user.password)) {
+            if (!await (0, bcrypt_1.compare)(password, user.password)) {
                 return res.status(400).json('Senha inválida');
             }
-            const token = jsonwebtoken_1.sign({ id: user.id }, 'sporgenda123', { expiresIn: 86400 });
+            const token = (0, jsonwebtoken_1.sign)({ id: user.id }, 'sporgenda123', { expiresIn: 86400 });
             return res.status(200).json({ user, token });
         }
         catch (error) {
