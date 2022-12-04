@@ -16,6 +16,16 @@ class UserController {
     }
   }
 
+  public async get (req: Request, res: Response): Promise<Response> {
+    try {
+      const user = await User.find()
+
+      return res.status(200).json(user)
+    } catch (error) {
+      return res.status(500).json('Server Error')
+    }
+  }
+
   public async login (req: Request, res: Response): Promise<Response> {
     try {
       const { name, password } = req.body

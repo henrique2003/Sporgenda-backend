@@ -4,7 +4,7 @@ import UserController from './controllers/UserController'
 import { auth } from './middlewares/auth'
 
 const { index, store, registerPeople, show, destroy } = ScheduleController
-const { post, login, auth: authController } = UserController
+const { post, login, auth: authController, get } = UserController
 const routes = Router()
 
 routes.post('/agenda', auth, store)
@@ -14,6 +14,7 @@ routes.put('/agenda/:id', registerPeople)
 routes.delete('/agenda/:id', auth, destroy)
 
 routes.post('/user', post)
+routes.get('/user', get)
 routes.post('/login', login)
 routes.get('/auth', auth, authController)
 
